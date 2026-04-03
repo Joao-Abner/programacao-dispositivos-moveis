@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React from 'react';
+import { formatCurrency } from './services/formatter';
 
-// Interface Car: Define o formato (tipagem) que cada objeto do nosso catálogo deve ter.
-interface Car {
+// Usando 'type' ao invés de 'interface' para definir o formato do objeto.
+type Car = {
   name: string;
   price: number;
   category: string;
   onSale: boolean;
-}
+};
 
 export default function App() {
   // 1. Preparação dos Dados: Criação do array de objetos 'dataList'
@@ -16,19 +17,19 @@ export default function App() {
   let dataList: Car[] = [
     {
       name: "Porsche 911",
-      price: 850000,
+      price: 85000,
       category: "Esportivo",
       onSale: false,
     },
     {
       name: "Honda Civic",
-      price: 120000,
+      price: 32000,
       category: "Sedan",
       onSale: true,
     },
     {
       name: "Jeep Compass",
-      price: 180000,
+      price: 18000,
       category: "SUV",
       onSale: true,
     },
@@ -42,7 +43,7 @@ export default function App() {
     <View style={styles.container}>
       {/* Exibindo a saudação no topo da tela */}
       {/* As chaves {userName} fazem a chamada "interpolação", embutindo o valor da variável de forma dinâmica no texto */}
-      <Text style={styles.heading}>Bem-vindo, {userName}!!!</Text>
+      <Text style={styles.heading}>Bem-vindo, {userName}!</Text>
 
       {/* Componente nativo do Expo para manter a barra superior do celular limpa */}
       <StatusBar style="auto" />
@@ -62,7 +63,7 @@ export default function App() {
               {/* Uso do Operador Ternário dentro do estilo */}
               {/* Se a propriedade 'onSale' do carro for 'true', defina a cor como 'green' (verde), senão 'gray' (cinza). */}
               <Text style={[styles.carPrice, { color: car.onSale ? 'green' : 'gray' }]}>
-                R$ {car.price}
+                {formatCurrency(car.price)}
               </Text>
             </View>
 
