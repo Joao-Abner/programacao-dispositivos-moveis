@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React from 'react';
 
+// Interface Car: Define o formato (tipagem) que cada objeto do nosso catálogo deve ter.
 interface Car {
   name: string;
   price: number;
@@ -10,6 +11,8 @@ interface Car {
 }
 
 export default function App() {
+  // 1. Preparação dos Dados: Criação do array de objetos 'dataList'
+  // Este array de objetos armazena a nossa lista de carros que será exibida dinamicamente.
   let dataList: Car[] = [
     {
       name: "Porsche 911",
@@ -31,21 +34,33 @@ export default function App() {
     },
   ];
 
+  // 2. Interpolação: Criando a variável para a saudação
   const userName: string = "João";
 
   return (
+    // View principal (container estrutural) que envolve todos os elementos da tela
     <View style={styles.container}>
+      {/* Exibindo a saudação no topo da tela */}
+      {/* As chaves {userName} fazem a chamada "interpolação", embutindo o valor da variável de forma dinâmica no texto */}
       <Text style={styles.heading}>Bem-vindo, {userName}!!!</Text>
 
+      {/* Componente nativo do Expo para manter a barra superior do celular limpa */}
       <StatusBar style="auto" />
 
+      {/* ScrollView permite navegar na lista rolando para baixo, útil quando temos muitos itens */}
       <ScrollView style={styles.listContainer}>
-        {/*Uso do index como a propriedade key do item. */}
+        {/* O método .map() itera (passa um a um) sobre o array 'dataList'. */}
+        {/* Para cada objeto 'car' encontrado, ele renderiza o bloco visual (<View>) abaixo. */}
+        {/* 3. Regras Técnicas: O 'index' está sendo usado como a 'key', para que o React nativo saiba diferenciar cada item renderizado na lista. */}
         {dataList.map((car, index) => (
           <View key={index} style={styles.carContainer}>
             <View style={styles.carDetails}>
+              {/* Interpolação: Imprimindo na tela o nome e a categoria de cada carro */}
               <Text style={styles.carName}>{car.name}</Text>
               <Text style={styles.carCategory}>{car.category}</Text>
+
+              {/* Uso do Operador Ternário dentro do estilo */}
+              {/* Se a propriedade 'onSale' do carro for 'true', defina a cor como 'green' (verde), senão 'gray' (cinza). */}
               <Text style={[styles.carPrice, { color: car.onSale ? 'green' : 'gray' }]}>
                 R$ {car.price}
               </Text>
