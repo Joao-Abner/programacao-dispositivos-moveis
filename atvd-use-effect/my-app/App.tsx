@@ -43,7 +43,7 @@ function SensorEstacionamento() {
             <View style={styles.botoesContainer}>
                 <TouchableOpacity
                     style={styles.btnAproximar}
-                    // O Math.max(0, ...) garante que a distância nunca desça abaixo de zero direto no clique!
+                    // com o Math.max(0, ...) a distância não desce abaixo de zero.
                     onPress={() => setDistancia(d => Math.max(0, d - 5))}
                 >
                     <Text style={styles.btnText}>- aproximar</Text>
