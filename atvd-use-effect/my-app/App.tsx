@@ -8,7 +8,7 @@ function SensorEstacionamento() {
     // PASSO 2: Criando o estado para a distância (em cm)
     const [distancia, setDistancia] = useState(30);
 
-    // PASSO 1 e 3: o array vazio [] indica inicialização (Mount) e a função de retorno a limpeza (Unmount)
+    // PASSO 1: o array vazio [] indica inicialização (Mount)
     useEffect(() => {
         console.log("📡 Sistema de Sensores Iniciado");
 
