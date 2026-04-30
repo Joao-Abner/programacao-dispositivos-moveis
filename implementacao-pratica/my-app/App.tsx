@@ -93,6 +93,7 @@ export default function App() {
             <StatusBar style="auto" />
 
             {/* REQUISITO 2: Banner de loading — some após 2s */}
+            {/* Se sistemaCarregado for falso, mostra o componente <LoadingBanner /> */}
             {!sistemaCarregado && <LoadingBanner />}
 
             {/* KeyboardAvoidingView evita que o teclado cubra os campos */}
