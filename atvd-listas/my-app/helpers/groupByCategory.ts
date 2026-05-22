@@ -11,17 +11,18 @@ export type Section = {
 };
 
 export function groupByCategory(motorcycles: Motorcycle[]): Section[] {
-    // cria um objeto vazio que vai funcionar como um "dicionário" (mapa chave-string → valor [array de motos])
-    const map: Record<string, Motorcycle[]> = {};
+    // reduce: percorre o array acumulando um dicionário (mapa categoria → array de motos)
+    const map = motorcycles.reduce<Record<string, Motorcycle[]>>((acc, moto) => {
 
-    // percorre o array de motos
-    for (const moto of motorcycles) {
-        if (!map[moto.category]) map[moto.category] = []; // cria o array se não existe
-        map[moto.category].push(moto); // adiciona a moto no array da categoria
-    }
+        if (!acc[moto.category]) acc[moto.category] = []; // cria o array se não existe
+        // adiciona a moto no array da categoria
+        acc[moto.category].push(moto);
+        // retorna o acumulador
+        return acc;
+    }, {});
 
     // transforma o mapa num array de seções, ordenando por categoria
     return Object.keys(map)
         .sort() // ordena as categorias em ordem alfabética
-        .map((title) => ({ title, data: map[title] })); // cria a seção {title: "Categoria", data: [moto1, moto2, ...] } 
+        .map((title) => ({ title, data: map[title] })); // converte cada categoria em um objeto Section compatível com o SectionList
 }
