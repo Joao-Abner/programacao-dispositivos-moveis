@@ -44,7 +44,7 @@ export default function RecentGrid() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    flexWrap: "wrap", // <-- A mágica acontece aqui!
+    flexWrap: "wrap",
     justifyContent: "space-between",
     gap: spacing.xs,
   },
