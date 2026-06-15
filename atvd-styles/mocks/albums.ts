@@ -2,7 +2,6 @@ export type Album = {
   cover: string;
 };
 
-// picsum.photos com seed fixo = mesma foto sempre, mas carrega 100% das vezes
 export const jumpBackInAlbums: Album[] = [
   { cover: "https://picsum.photos/seed/sza-sos/300/300" },
   { cover: "https://picsum.photos/seed/billie-hmhs/300/300" },
