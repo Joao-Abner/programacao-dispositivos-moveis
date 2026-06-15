@@ -4,7 +4,6 @@ import Header from "@/components/header";
 import RecentGrid from "@/components/recent-grid";
 import ScreenWrapper from "@/components/screen-wrapper";
 import { jumpBackInAlbums, metallicaAlbums, yourShowsAlbums } from "@/mocks/albums";
-import React from "react";
 
 export default function index() {
   return (
