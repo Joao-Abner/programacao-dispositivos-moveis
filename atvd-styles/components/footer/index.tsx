@@ -1,11 +1,14 @@
-import { colors } from "@/constants/colors";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Icon from "./icon";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Footer() {
+  //Hook de consumo de tema
+  const { colors } = useTheme()
+
   return (
     <View style={styles.container}>
       <Icon
