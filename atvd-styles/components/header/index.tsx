@@ -6,21 +6,22 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Header() {
   //Hook de consumo de tema
-  const { colors, toggleTheme } = useTheme()
+  const { colors, colorScheme, toggleTheme } = useTheme()
 
   return (
     <View style={styles.container}>
       <Text style={[styles.title, { color: colors.foreground }]}>Good morning</Text>
 
       <View style={styles.iconsContainer}>
+        <Feather name="bell" size={24} color={colors.foreground} />
+        <Feather name="clock" size={24} color={colors.foreground} />
+        {/* Ícone de toggle: sun no dark mode, moon no light mode */}
         <TouchableOpacity onPress={toggleTheme}>
-          <Feather name="bell" size={24} color={colors.foreground} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={toggleTheme}>
-          <Feather name="clock" size={24} color={colors.foreground} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={toggleTheme}>
-          <Feather name="settings" size={24} color={colors.foreground} />
+          <Feather
+            name={colorScheme === "dark" ? "sun" : "moon"}
+            size={24}
+            color={colors.foreground}
+          />
         </TouchableOpacity>
       </View>
     </View>

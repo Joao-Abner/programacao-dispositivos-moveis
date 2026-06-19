@@ -13,7 +13,7 @@ export default function FilterChips() {
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View style={styles.row}>
         {chips.map((label, index) => (
-          <View key={index} style={[styles.chip, { backgroundColor: colors.background }]}>
+          <View key={index} style={[styles.chip, { backgroundColor: colors.surface }]}>
             <Text style={[styles.chipText, { color: colors.foreground }]}>{label}</Text>
           </View>
         ))}
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   chip: {
-    backgroundColor: "#333333", // Fundo cinza escuro para dar contraste com o fundo preto
     paddingHorizontal: spacing.xs,
     paddingVertical: spacing.xs,
     borderRadius: 20, // Cria o efeito de "pílula" (cantos arredondados)

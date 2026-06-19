@@ -1,9 +1,11 @@
 import { createContext, PropsWithChildren, useState, useContext } from "react";
 import { darkTheme, lightTheme, ThemeColors } from "@/constants/colors";
 
+type ColorScheme = "light" | "dark";
+
 export interface ThemeContextProps {
     colors: ThemeColors,
-    isDark: boolean,
+    colorScheme: ColorScheme,
     toggleTheme: () => void
 };
 
@@ -11,17 +13,17 @@ export const ThemeContext = createContext<ThemeContextProps | undefined>(undefin
 
 export function ThemeProvider({ children }: PropsWithChildren) {
 
-    // estado dark
-    const [isDark, setIsDark] = useState<boolean>(true);
+    // estado colorScheme com string "light" ou "dark"
+    const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
 
-    // função toggleTheme para inverter o estado dark
+    // função toggleTheme para alternar entre "dark" e "light"
     const toggleTheme = () => {
-        setIsDark((prevIsDark) => !prevIsDark)
+        setColorScheme((prev) => prev === "dark" ? "light" : "dark");
     }
 
     // return do provider
     return (
-        <ThemeContext.Provider value={{ colors: isDark ? darkTheme : lightTheme, isDark, toggleTheme }}>
+        <ThemeContext.Provider value={{ colors: colorScheme === "dark" ? darkTheme : lightTheme, colorScheme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     )

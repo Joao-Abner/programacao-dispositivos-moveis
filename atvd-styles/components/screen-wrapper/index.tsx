@@ -7,7 +7,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export default function ScreenWrapper({ children }: PropsWithChildren) {
   //Hook de consumo de tema
-  const { colors, isDark } = useTheme()
+  const { colors, colorScheme } = useTheme()
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -17,7 +17,7 @@ export default function ScreenWrapper({ children }: PropsWithChildren) {
 
       <Footer />
 
-      <StatusBar barStyle={isDark ? "light-content" : "dark-content"} />
+      <StatusBar barStyle={colorScheme === "dark" ? "light-content" : "dark-content"} />
     </SafeAreaView>
   );
 }

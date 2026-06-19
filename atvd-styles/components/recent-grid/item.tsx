@@ -13,7 +13,7 @@ export default function RecentGridItem({ title, image }: RecentGridItemProps) {
   const { colors } = useTheme()
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: colors.surface }]}>
       <Image source={{ uri: image }} style={styles.image} />
       <Text style={[styles.title, { color: colors.foreground }]} numberOfLines={2}>
         {title}
