@@ -1,19 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Href, Link, useRouter } from "expo-router";
 
 export default function Index() {
     const router = useRouter();
 
     const handleRandomMovie = () => {
         const randomId = Math.floor(Math.random() * 10);
-        router.push(`/movie/${randomId}`);
+        router.push(`/movie/${randomId}` as Href);
     };
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Clube do Cinema 🎬</Text>
-            
+
             {/* Botão 1: Link Declarativo */}
             <Link href="/home" asChild>
                 <Pressable style={styles.button}>
@@ -22,16 +22,16 @@ export default function Index() {
             </Link>
 
             {/* Botão 2: Navegação Imperativa com Query Param */}
-            <Pressable 
-                style={styles.button} 
+            <Pressable
+                style={styles.button}
                 onPress={() => router.push('/home?user=Fulano')}
             >
                 <Text style={styles.buttonText}>Entrar como Usuário Logado</Text>
             </Pressable>
 
             {/* Botão 3: Navegação Imperativa com Route Param Dinâmico */}
-            <Pressable 
-                style={styles.button} 
+            <Pressable
+                style={styles.button}
                 onPress={handleRandomMovie}
             >
                 <Text style={styles.buttonText}>Ver um Filme Aleatório</Text>
