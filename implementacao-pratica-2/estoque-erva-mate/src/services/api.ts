@@ -1,11 +1,19 @@
 import axios from "axios";
+import { Platform } from "react-native";
 
-// No Expo Go Físico (via Wi-Fi), troque "10.0.2.2" pelo IP local do computador (ex: 192.168.1.100)
-// No emulador Android, 10.0.2.2 aponta para o localhost do computador.
-// No Expo Web ou iOS Simulator, use "http://localhost:8090/"
+// No Web ou iOS Simulator: http://127.0.0.1:8090
+// No Android Emulador: http://10.0.2.2:8090
+// No Celular Físico (Expo Go Wi-Fi): troque por http://SEU_IP_LOCAL:8090
+
+const getBaseUrl = () => {
+  if (Platform.OS === "web") {
+    return "http://127.0.0.1:8090/";
+  }
+  return "http://10.0.2.2:8090/";
+};
 
 const api = axios.create({
-  baseURL: "http://10.0.2.2:8090/",
+  baseURL: getBaseUrl(),
 });
 
 export default api;
