@@ -29,11 +29,16 @@ export default function LoginScreen() {
     setLoading(true);
     try {
       await login(email, password);
-    } catch (error) {
+    } catch (error: any) {
+      const isNetworkError = error?.message?.includes("Network") || error?.code === "ERR_NETWORK";
+      const msg = isNetworkError 
+        ? "Falha de Conexão: O celular não conseguiu alcançar a porta 8090 do PC. Desative o Firewall do Windows."
+        : "E-mail ou senha inválidos. Tente novamente.";
+
       if (Platform.OS === "web") {
-        window.alert("E-mail ou senha inválidos. Tente novamente.");
+        window.alert(msg);
       } else {
-        Alert.alert("Falha no Login", "E-mail ou senha inválidos. Tente novamente.");
+        Alert.alert(isNetworkError ? "Bloqueio de Rede" : "Falha no Login", msg);
       }
     } finally {
       setLoading(false);
